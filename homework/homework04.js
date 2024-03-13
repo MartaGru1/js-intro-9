@@ -71,6 +71,18 @@ for (let i = 1; i<= rNum; i++){
 
 console.log(result);
 
+// Bilal resolution
+let randomNum = Math.floor((Math.random() * 10) + 1);
+let factorial = randomNum;
+
+
+for (let i = randomNum - 1; i > 1; i--) {
+    factorial *= (i);
+}
+if(factorial === 0) factorial = 1;
+console.log(factorial);
+
+
 // Task-7
 /* Write a program generates a random number between 1 and 100 (both inclusive).
 Keep generating a new number till you get a number that is divisible by 5.
@@ -92,6 +104,21 @@ do { num1 = Math.floor(Math.random() * 100) + 1;
 
 console.log(`The random number is ${num1} and it took ${attempts} attempt/s to generate it.`)
 
+// Bilal resolution
+
+let randomNumber1= Math.floor((Math.random() * 100) + 1);
+let attempts = 0;
+
+//you can also use Do-While
+while (randomNumber1 % 5 !== 0) {
+    randomNumber1 = Math.floor((Math.random() * 100) + 1);
+    attempts++;
+}
+
+console.log(`The random number is ${randomNumber1} and it took ${attempts}
+attempt/s to generate it.`);
+
+
 
 // Task-8
 /* -Create an array that stores countries below.
@@ -109,7 +136,7 @@ console.log('\n ------------ TASK-8--------------------\n');
 
 const countries = ['Germany', 'Argentina', 'Ukraine', 'Romania'];
 console.log(countries);
-console.log(countries.slice().sort());
+console.log(countries.sort());
 
 
 // Task-9
@@ -149,7 +176,7 @@ console.log('\n ------------ TASK-10--------------------\n');
 
 const cartoonCats = ['Garfield', 'Tom', 'Sylvester', 'Azrael'];
 
-const sortedCartoonCats = cartoonCats.slice().sort();
+const sortedCartoonCats = cartoonCats.sort();
 console.log(sortedCartoonCats);
 
 const hasBothCats = sortedCartoonCats.includes('Garfield') && sortedCartoonCats.includes('Felix');
@@ -181,6 +208,29 @@ for (let i = 0; i < numArray.length; i++) {
     console.log(numArray[i])
 }
 
+//Bilal resolution
+
+const numbers = [10.5, 20.75, 70, 80, 15.75];
+
+console.log(numbers);
+
+console.log("\n--------------ForI---------------\n");
+
+for (let i = 0; i <= numbers.length - 1; i++) {
+    console.log(numbers[i]);
+}
+
+console.log("\n--------------ForOf---------------\n");
+
+for(let number of numbers){
+    console.log(number);
+}
+
+console.log("\n--------------ForEach---------------\n");
+
+numbers.forEach((number) => console.log(number))
+
+
 // Task - 12 
 /* -Create an array that stores objects below.
 Pen, notebook, Book, paper, bag, pencil, Ruler
@@ -207,19 +257,30 @@ for (let i = 0; i < arrObject.length; i++) {
     if (obj.startsWith('b') || obj.startsWith('p') ) {
         startsWithBP++;
     }
-}
-
-console.log("Elements starting with 'B' or 'P' =", startsWithBP);
-
-
-for (let i = 0; i < arrObject.length; i++) {
-    let obj = arrObject[i];
     if (obj.toLowerCase().includes('book') || obj.toLowerCase().includes('pen')) {
         containsBookPen++;
     }
 }
 
+console.log("Elements starting with 'B' or 'P' =", startsWithBP);
 console.log("Elements having 'book' or 'pen' =", containsBookPen);
+
+// Bilal resolution
+
+const objs = ['Pen', 'notebook', 'Book', 'paper', 'bag', 'pencil', 'Ruler'];
+let countBorP = 0;
+let countBookorPen = 0;
+
+for (let obj of objs) {
+    obj = obj.toLowerCase();
+    if (obj.startsWith('b') || obj.startsWith('p')) countBorP++;
+    if (obj.includes('book') || obj.includes('pen')) countBookorPen++;
+}
+
+console.log(objs);
+console.log(`Elements starting with B or P = ${countBorP}`);
+console.log(`Elements starting with book or pen = ${countBookorPen}`);
+
 
 
 // Task - 13
@@ -306,16 +367,27 @@ firstDuplicate([ 'foo', 'abc', '123', 'bar’ ]) 	-> -1 */
 console.log('\n ------------ TASK-15--------------------\n');
 
 function firstDuplicate(arr) {
-    let duplicates = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (arr.indexOf(arr[i]) !== i) {
-            duplicates.push(arr[i]);
+    for (const num of arr) {
+        if (arr.indexOf(num) !== arr.lastIndexOf(num)) {
+            return num;
         }
     }
-    return duplicates.length > 0 ? duplicates[0] : -1;
+    return -1;
 }
 
-console.log(firstDuplicate([ 3, 7, 10, 0, 3, 10 ]));        // 3
+// Bilal resolution
+/*function firstDuplicate(array) {
+
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[i] === array[j]) return array[i];
+        }
+    }
+    return -1;
+};
+*/
+
+console.log(firstDuplicate([ 3, 7, 10, 0, 3, 10 ])) ;       // 3
 console.log(firstDuplicate([ 5, 7, 7, 0, 5, 10 ]));        // 7
 console.log(firstDuplicate([ 5, '5', 3, 7, 4 ]));          // -1
 console.log(firstDuplicate([ 123, 'abc', '123', 3, 'abc' ]));  // 'abc'
@@ -346,6 +418,18 @@ function getDuplicates(arr) {
     }
     return duplicates;
 }   
+
+
+// Bilal resolution
+
+const container = [];
+const duplicates = [];
+
+for(let obj of array){
+    if(container.includes(obj) && !duplicates.includes(obj)) duplicates.push(obj)
+    else container.push(obj)
+}
+return duplicates;
 
 console.log(getDuplicates([ 0, -4, -7, 0, 5, 10, 45, -7, 0 ]));  // [ 0, -7 ]   
 console.log(getDuplicates([ 1, 2, 5, 0, 7 ]));                // [ ]
@@ -378,6 +462,23 @@ console.log(reverseStringWords(""));                  // ""
 console.log(reverseStringWords("    "));              // ""
 
 
+
+// Bilal resolution
+
+function reverseStringWords(str) {
+
+    let strAsArr = str.trim().split(" ");
+
+    for(let i = 0; i < strAsArr.length; i++) {
+        strAsArr[i] = strAsArr[i].split("").reverse().join("");
+    }
+
+    return strAsArr.join(" ");
+}
+
+console.log(reverseStringWords("Hello World"));
+
+
 // Task - 18 
 /*Requirement:
 Write a function named as getEvens() which takes 2 number arguments and returns all the even numbers as an array stored from smallest even number to greatest even number when invoked.
@@ -402,6 +503,22 @@ function getEvens(num1, num2) {
     }
     return evens;
 }
+
+// Bilal resolution
+
+function getEvens(num1, num2){
+
+    let evens = [];
+    let greaterNumber = Math.min(num1, num2);
+    let smallerNumber = Math.max(num1, num2)
+
+    for(let i = smallerNumber; i <= greaterNumber; i++){
+        if(i % 2 === 0) evens.push(i);
+    };
+
+    return evens;
+};
+
 
 console.log(getEvens(2, 7));    // [ 2, 4, 6 ]
 console.log(getEvens(17, 5));   // [ 6, 8, 10, 12, 14, 16 ]
@@ -433,6 +550,20 @@ function getMultipleOf5(num1, num2) {
     }
     return multiplesOf5;
 }
+
+//Bilal resolution
+
+function getMultipleOf5(num1, num2) {
+
+    let divisibleBy5 = [];
+
+    for(i = Math.max(num1, num2); i >= Math.min(num1, num2); i--){
+        if(i % 5 === 0) divisibleBy5.push(i);
+    };
+
+    return divisibleBy5;
+};
+
 
 console.log(getMultipleOf5(3, 17));    // [5, 10, 15]
 console.log(getMultipleOf5(23, 5));    // [ 20, 15, 10, 5 ]
@@ -481,26 +612,22 @@ function fizzBuzz(num1, num2) {
 }
 
 
+
+// Bilal resolution correct
+
 function fizzBuzz(num1, num2) {
-    if(num1 > num2) { [num1, num2] = [num2, num1];
-    }
-    let result = '';
-    for (let i = num1; i <= num2; i++) {
-        if (i % 3 === 0 && i % 5 === 0) {
-            result += 'FizzBuzz';
-        } else if (i % 3 === 0) {
-            result += 'Fizz';
-        } else if (i % 5 === 0) {
-            result += 'Buzz';
-        } else if (i === num2) {
-            result += i;
-        }
-        else {
-            result += i + ' | ';
-        }
-    }
-    return result;
-}
+
+    let arr = [];
+
+    for(let i = Math.min(num1, num2); i <= Math.max(num1, num2); i++){
+        if(i % 5 === 0 && i % 3 === 0) arr.push('FizzBuzz');
+        else if(i % 5 === 0) arr.push('Buzz');
+        else if(i % 3 === 0) arr.push('Fizz');
+        else arr.push(i);
+    };
+
+    return arr.join(" | ");
+};
 
 
 console.log(fizzBuzz(13, 18));    // "13 | 14 | FizzBuzz | 16 | 17 | Fizz"  

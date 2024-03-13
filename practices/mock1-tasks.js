@@ -734,16 +734,3 @@ console.log(startsVowel("Tech"));   // false
 console.log(startsVowel("Apple"));  // true
 console.log(startsVowel("abc"));    // true
 
-
-
-
-
-function middle(str) {
-    if(str.length %2 ===1) {
-    return str.slice(str.length / 2); }
-    else {
-    return str.slice(str.length / 2 - 1, str.length / 2 + 1);
-} 
-}
-
-    console.log(middle("Global"))
