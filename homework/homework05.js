@@ -10,21 +10,26 @@ countPos([0, -1, -2, -3]) 		-> 0
 
 console.log('\n---------------Task-1--------------\n');
 
-function countPos(num){
+function countPos(arr){
     let count = 0;
-    for (let i = 0; i < num.length; i++){
-        if (num[i] > 0){
+    for (num of arr){
+        if (num > 0){
             count++;
         }
     }
     return count;    
 }
+
+// 
+const countPos = (arr) =>  arr.filter(num => num > 0).length
+
+
 console.log(countPos([-45, 0, 0, 34, 5, 67])); // 3
 console.log(countPos([-23, -4, 0, 2, 5, 90, 123])); // 4
 console.log(countPos([0, -1, -2, -3])); // 0
 
 
-//Task -2
+//Task - 2
 /* Requirement:
 Write a function named countA() which takes a string argument and returns how many A or a there 
 are in the given string when invoked.
@@ -48,6 +53,8 @@ function countA(str){
     }
     return count;
 }
+const countA = (str) => str.split('').filter(letter => letter.toLowerCase() === 'a').length
+
 console.log(countA("TechGlobal is a QA bootcamp")); // 4
 console.log(countA("QA stands for Quality Assurance")); // 5    
 console.log(countA("Cypress")); // 0
@@ -68,8 +75,7 @@ countVowels("") 			-> 0
  console.log('\n---------------Task-3--------------\n');
 
  function countVowels(word){
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
-    word = word.toLowerCase();
+    const vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
     let countVowels = 0;
     for (let vowelChar of word){
         if (vowels.includes(vowelChar)) {
@@ -78,6 +84,16 @@ countVowels("") 			-> 0
     }
     return countVowels;
  }
+//
+ const countVowels = (word) => {
+    let vowelCounter = 0;
+    const vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u']
+
+    for(letter of word){
+        if(vowels.includes(letter)) vowelCounter++;
+    }
+    return vowelCounter;
+}
 
 
 console.log(countVowels("Hello")); // 2
@@ -109,6 +125,18 @@ function countConsonants(word){
     return countConsonants;
 }
 
+//
+const countConsonants = (word) => {
+    let counter = 0;
+    const vowels = ['a', 'e', 'i', 'o', 'u']
+
+    for(letter of word){
+        letter = letter.toLowerCase()
+        if(!(vowels.includes(letter))) counter++;
+    }
+    return counter;
+}
+
 console.log(countConsonants("Hello")); 		// 3
 console.log(countConsonants("Hello World")); 		// 8
 console.log(countConsonants("JavaScript is fun")); 		// 12
@@ -129,6 +157,9 @@ console.log('\n---------------Task-5--------------\n');
 function countWords(str) {
     return str.trim().split(' ').length;
 }
+//
+const countWords2 = (str) => str.trim().split(' ').length
+
 console.log(countWords("     Javascript is fun       ")); // 3
 console.log(countWords("Cypress is an UI automation tool.    ")); // 6
 console.log(countWords("1 2 3 4")); // 4
@@ -152,11 +183,13 @@ console.log('\n---------------Task-6--------------\n');
 
 function factorial(num){
     let result = 1;
-    for (let i = 1; i <= num; i++){
+    for (let i = 2; i <= num; i++){
         result *= i;
     }
     return result;
 }
+
+const factorial = (n) => n === 0 || n === 1? 1: n * factorial(n-1)
 
 console.log(factorial(5)); // 120
 console.log(factorial(4)); // 24
@@ -192,6 +225,32 @@ function isPalindrome(word){
     return word === reversedWord;
 }
 
+const isPalindrome = (str) => str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
+
+//Second way:
+    // str = str.toLowerCase()
+    // let start = 0;
+    // let end = str.length - 1
+
+    // while(start < end){
+    //     if(str[start] !== str[end]) return false
+
+    //     start++;
+    //     end--;
+    // }
+    // return true
+
+// Third way:
+    // for(let i = 0; i < str.length; i++){
+    //     if(str[i] !== str[end]) return false
+    //     end--;
+
+    //     if(i >= end) return true;
+    // }
+    // return true
+
+
+
 console.log(isPalindrome("Hello")); // false
 console.log(isPalindrome("Kayak")); // true
 console.log(isPalindrome("civic")); // true
@@ -226,6 +285,19 @@ function countMultipleWords(arr){
     return count;
 }
 
+
+const countMultipleWords = (arr) => arr.reduce((count, str) => str.trim().includes(' ')? count + 1 : count, 0)
+
+//way 2:
+    // let count = 0;
+
+    // arr.forEach(e => {
+    //     if(e.trim().includes(' ')) count++;
+    // });
+
+    // return count;
+
+
 console.log(countMultipleWords([ "foo", "", "    ", "foo bar", "     foo" ])); // 1
 console.log(countMultipleWords([ "foo", "bar", "foobar", "     foobar   " ])); // 0
 console.log(countMultipleWords([ "f o o", "b a r", "foo bar", "     foo bar   " ])); // 4
@@ -250,6 +322,17 @@ function count3OrLess(word){
     if (word === '') return 0;
     else return word.split(' ').filter(word => word.length <= 3).length;
 }
+
+const count3OrLess = (str) => str.trim().split(' ').filter(word => word.length > 0 && word.length <= 3).length
+
+//way2:
+    // let count = 0;
+    // const strAsArr = str.trim().split(' ');
+
+    // strAsArr.forEach(word => {
+    //     if( word.length > 0 && word.length <= 3) count++;
+    // })
+    // return count
 
 console.log(count3OrLess("Hello")); // 0
 console.log(count3OrLess("Hi John")); // 1
@@ -284,6 +367,38 @@ function isPrime(num){
     return true;
 }
 
+//
+
+const isPrime = (num) => {
+    if(num < 2) return false;
+    if(num === 2 || num === 3) return true;
+    if(num % 2 === 0 || num % 3 === 0) return false;
+
+    let i = 5;
+    while(i < num){
+        if(num % i === 0) return false;
+        i+=2;
+    }
+
+    return true;
+
+}
+
+const isPrime = num => {
+    if(num < 2) return false;
+
+    let i = 2;
+
+    while(i < num){
+        if(num % i === 0) return false;
+        i++;
+    }
+    return true;
+}
+
+
+
+
 console.log(isPrime(5)); // true
 console.log(isPrime(2)); // true
 console.log(isPrime(29)); // true
@@ -312,6 +427,20 @@ const add = (arr1, arr2) => {
     return newArr1.map((num1, i) => num1 + newArr2[i]);
 };
 
+const add = (arr1, arr2) => {
+    if(arr2.length > arr1.length) [arr1, arr2] = [arr2, arr1]
+    return arr1.map((value, i) => value + (arr2[i] || 0))
+}
+
+/*
+if(arr2.length > arr1.length) [arr1, arr2] = [arr2, arr1]
+    for(let i = 0; i < arr2.length; i++){
+        arr1[i] += arr2[i];
+    }
+
+    return arr1
+*/
+
 console.log(add([3, 0, 0, 7, 5, 10], [6, 3, 2])); // [9, 3, 2, 7, 5, 10]
 console.log(add([10, 3, 6, 3, 2], [6, 8, 3, 0, 0, 7, 5, 10, 34])); // [16, 11, 9,  3, 2, 7, 5, 10, 34]
 console.log(add([-5, 6, -3, 11], [5, -6, 3, -11])); // [0, 0, 0, 0]
@@ -333,6 +462,16 @@ console.log('\n---------------Task-12--------------\n');
 function removeExtraSpaces(word){
     return word.trim().split(' ').filter(x => x !== '').join(' ');
 }
+
+//
+const removeExtraSpaces = (str) => str.trim().split(' ').filter(word => word.length > 0).join(' ')
+
+//WAY 2:  
+    //let result = ''
+    // for(s of strAsArr){
+    //     if(s !== '') result += `${s} `
+    // }
+    // return result.slice(0,-1)
 
 console.log(removeExtraSpaces("Hello")); // "Hello"
 console.log(removeExtraSpaces("      Hello    World     ")); // "Hello World"
@@ -358,6 +497,24 @@ function findClosestTo10(numbers) {
     const sortedNumbers = numbers.filter(number => number !== 10).sort((a, b) => Math.abs(a - 10) - Math.abs(b - 10) || a - b);
     return sortedNumbers[0];
 }
+
+const findClosestTo10 = (arr) =>{
+    let closestTo10 = Number.MAX_VALUE
+    let closestDiff = Number.MAX_VALUE
+
+    for(currentNum of arr){
+        if(currentNum === 10) continue;
+
+        let currentDiff = Math.abs(10 - currentNum);
+
+        if(currentDiff < closestDiff || ((currentDiff === closestDiff) && currentNum < closestTo10)){
+            closestTo10 = currentNum;
+            closestDiff = currentDiff;
+        }
+    }
+    return closestTo10;
+}
+
 console.log(findClosestTo10([10, -13, 5, 70, 15, 57])); // 5
 console.log(findClosestTo10([10, -13, 8, 12, 15, -20])); // 8
 console.log(findClosestTo10([0, -1, -2])); // 0
@@ -398,6 +555,19 @@ function isEmailValid(email){
     return true;
 }
 
+const isEmailValid = (email) => {
+	if(email.includes(' ')) return false;
+	if(email.split('@').length !== 2) return false
+	
+	const beginning = email.split('@')[0]
+	const middle = email.split('@')[1].split('.')[0]
+	const end = email.split('@')[1].split('.')[1]
+ 
+	if(beginning === undefined || middle === undefined || end === undefined) return false
+  // if(!beginning || !middle || !end) return false
+   return (beginning.length >= 2 && middle.length >= 2 && end.length >= 2)
+ }
+
 console.log(isEmailValid("")); // false
 console.log(isEmailValid("@gmail.com")); // false
 console.log(isEmailValid("johndoe@yahoo")); // false
@@ -406,7 +576,6 @@ console.log(isEmailValid("a@outlook.com")); // false
 console.log(isEmailValid("johndoe@a.com")); // false
 console.log(isEmailValid("johndoe@@gmail.com")); // false
 console.log(isEmailValid("johndoe@gmail.com")); // true
-
 
 
 //Task - 15
@@ -432,20 +601,46 @@ isPasswordValid("Test1234#") 		-> true
 
 console.log('\n---------------Task-15--------------\n');
 
-function isPasswordValid(password) {
-    if (password.length < 8 || password.length > 16) {
-        return false;
-    } 
+//
+/*const isPasswordValid = (pass) => {
+	if(pass.includes(' ')) return false;
+	if(pass.length < 8 || pass.length > 16) return false
+ 
+	let hasUppercase = false;
+	let hasLowercase = false;
+	let hasDigit = false;
+	let hasSpecial = false;
+ 
+	for(char of pass){
+	 if(char >= 'A' && char <= "Z") hasUppercase = true;
+	 else if(char >= 'a' && char <= "z") hasLowercase = true;
+	 else if(char >= '0' && char <= "9") hasDigit = true;
+	 else hasSpecial = true;
+	}
+ 
+ return (hasUppercase && hasLowercase && hasDigit && hasSpecial)
+	
+ } */
 
-    for (let char of password) {
-        const charAscii = char.charCodeAt(0);
-        if (charAscii >= 48 && charAscii <= 57) return hasDigit = true;
-        else if (charAscii >= 65 && charAscii <= 90) return hasUppercase = true;
-        else if (charAscii >= 97 && charAscii <= 122) return hasLowercase = true;
-        else if ("!@#$%^&*()-+_={}[]:;\",.<>?/\\|'".includes(char)) return hasSpecialChar = true;
-        //else if ((charCode >= 32 && charCode <= 47) || (charCode >= 58 && charCode <= 64) || (charCode >= 91 && charCode <= 96) || (charCode >= 123 && charCode <= 126))
-    }
-    return hasDigit && hasUppercase && hasLowercase && hasSpecialChar;
+const isPasswordValid = (pass) => {
+    // check range
+if(pass.length < 8 || pass.length > 16) return false
+//check if password has numbers
+if(pass.split('').filter(x => '0' && x <= '9').length === 0) return false
+
+// check if password has uppercase 
+if(pass.split('').filter(x => 'A' && x <= 'Z').length === 0) return false
+
+// check if password has lowercase
+if(pass.split('').filter(x => 'a' && x <= 'z').length === 0) return false
+
+// check if password has special characters (not a number, lowercase or uppercase character)
+if(pass.split('').filter(x => '!' && x <= '/').length === 0) return false
+
+if (pass.includes(' ')) return false;
+
+return true
+
 }
 
 console.log(isPasswordValid("")); // false

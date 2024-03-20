@@ -284,7 +284,7 @@ console.log(startVowel("123"));  // false
 
 /* Task-9
 Requirement: 
-Write a function named as swap4() which takes a string word as an argument and returns the string back 
+Write a function named as () which takes a string word as an argument and returns the string back 
 with its first and last 4 characters swapped when invoked.
 NOTE: Return empty string if th        zae given string does not have 8 or more characters.
 Examples:
