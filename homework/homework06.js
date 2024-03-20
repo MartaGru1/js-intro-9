@@ -95,7 +95,6 @@ console.log(hasVowel("ABC")); // true
 // Task - 4
 /* Requirement:
 Write a function named checkAge() which takes a number argument to be considered as the yearOfBirth and returns a message below based on the given year.
-
 If the age is less than 16, then print "AGE IS NOT ALLOWED”"
 If the age is 16 or more, then print "AGE IS ALLOWED"
 If the age is more than 120 or a future year, print "AGE IS NOT VALID"
