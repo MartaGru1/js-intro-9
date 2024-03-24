@@ -22,6 +22,17 @@ console.log('\n-------------Task-1------------\n');
 */
 const noSpace = (str) => str.split(' ').join('');
 
+//Way 2:
+// const noSpace = (str) => str.split("").filter(c => c !== " ").join("")
+
+//Way 3:
+//   let result = "";
+
+//    for(c of str){
+//       if(c !== ' ') result += c;
+//    }
+//    return result;
+
 console.log(noSpace("")); // ""
 console.log(noSpace("Javascript")); // "Javascript"
 console.log(noSpace("   Hello   ")); // "Hello"
@@ -54,6 +65,15 @@ console.log('\n-------------Task-2------------\n');
 
 const replaceFirstLast = (word) => word.length < 2 ? "" : word.slice(-1) + word.slice(1, -1) + word.slice(0, 1);
 
+// Bilal resolution:
+
+const replaceFirstLast = (str) => { 
+    str = str.trim()
+    return str.length < 2 ? "" : str[str.length - 1] + str.slice(1, str.length - 1) + str[0];
+ }
+
+
+
 console.log(replaceFirstLast("")); // ""
 console.log(replaceFirstLast("Hello")); // "oellH"
 console.log(replaceFirstLast("Tech Global")); // "lech GlobaT"
@@ -84,6 +104,12 @@ const hasVowel = (str) => {
     }
     return false;
 }
+
+// Bilal resolution
+const hasVowel = (str) => str.split('').filter(c => ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'].includes(c)).length > 0
+
+   // str = str.toLowerCase();
+   // return str.includes('a') || str.includes('e') || str.includes('i') || str.includes('o')|| str.includes('u')
 
 console.log(hasVowel("")); // false
 console.log(hasVowel("Javascript")); // true
@@ -118,6 +144,16 @@ const checkAge = (yearOfBirth) => {
         return "AGE IS NOT VALID";
     }
 }
+
+// Bilal resolution:
+const checkAge = (YOB) => {
+    const currYear = 2023;
+    const age = currYear - YOB;
+  
+    if(age < 0 || age > 120) return 'AGE IS NOT VALID'
+    else if(age >= 16) return "AGE IS ALLOWED"
+    else return "AGE IS NOT ALLOWED"
+  }
 
 console.log(checkAge(2015)); // "AGE IS NOT ALLOWED"
 console.log(checkAge(2007)); // "AGE IS ALLOWED"
@@ -173,7 +209,7 @@ console.log('\n-------------Task-6------------\n');
 }
 */
 
-const noA = (arr) => arr.map((el) => el[0].toLowerCase() === 'a' ? '###' : el);
+const noA = (arr) => arr.map(i => i.toLowerCase()[0] === 'a' ? '###' : i);
 
 console.log(noA(["javascript", "hello", "123", "xyz"])); // ["javascript", "hello", "123", "xyz"]
 console.log(noA(["apple", "123", "ABC", "javascript"])); // ["###", "123", "###", "javascript"]
@@ -195,7 +231,7 @@ no3and5([10, 11, 12, 13, 14, 15]) 	-> [99, 11, 100, 13, 14, 101]
 
 console.log('\n-------------Task-7------------\n');
 
-/*function no3and5(arr) {
+function no3and5(arr) {
     return arr.map((el) => {
         if (el % 3 === 0 && el % 5 === 0) {
             return 101;
@@ -208,10 +244,19 @@ console.log('\n-------------Task-7------------\n');
         }
     });
 }
-*/
-//
-const no3and5 = (arr) => arr.map((el) => el % 3 === 0 && el % 5 === 0 ? 101 : el % 3 === 0 ? 100 : el % 5 === 0 ? 99 : el);
 
+//
+
+//Bilal resolution:
+const no3and5 = (arr) => {
+    return arr.map(num => {
+      if(num % 3 === 0 && num % 5 === 0) return 101;
+      else if(num % 3 === 0) return 100;
+      else if(num % 5 === 0) return 99;
+      return num;
+    })
+  }
+  
 console.log(no3and5([7, 4, 11, 23, 17])); // [7, 4, 11, 23, 17]
 console.log(no3and5([3, 4, 5, 6])); // [100, 4, 99, 100]
 console.log(no3and5([10, 11, 12, 13, 14, 15])); // [99, 11, 100, 13, 14, 101]
@@ -252,7 +297,21 @@ const countPrimes = (arr) => {
     }
     return count;
 }
+ // Bilal resolution:
 
+ const countPrimes = (arr) => {
+
+    return arr.filter(num => {
+      if(num < 2) return false;
+      if(num === 2) return true;
+      if(num % 2 === 0) return false
+  
+      for(let i = 3; i < num; i+=2){
+        if(num % i === 0) return false
+      }
+      return true;
+    }).length;
+  }
 
 console.log(countPrimes([-10, -3, 0, 1])); // 0
 console.log(countPrimes([7, 4, 11, 23, 17])); // 4
@@ -283,6 +342,22 @@ function removeDuplicates(arr){
     
 }
 
+// Bilal resolution
+
+const removeDuplicates = (arr) => {
+    let result = [];
+  
+    arr.forEach(i => {
+      if(!result.includes(i)) result.push(i)
+    })
+    return result;
+  }
+
+
+// RECAP RESOLUTION 
+
+const removeDuplicates = arr => arr.reduce((result, el) => !result.includes(el) ? result.concat(el): result, []);
+
 console.log(removeDuplicates([10, 20, 35, 20, 35, 60, 70, 60])); // [10, 20, 35, 60, 70]
 console.log(removeDuplicates([1, 2, 5, 2, 3])); // [1, 2, 5, 3]
 console.log(removeDuplicates([0, -1, -2, -2, -1])); // [0, -1, -2]
@@ -307,7 +382,7 @@ isDateFormatValid("10/2/2020") 		-> false
 isDateFormatValid("10/02/2020 ") 		-> true*/
 
 console.log('\n-------------Task-10------------\n');
-
+/*
 const isDateFormatValid = (str) => {
     let date = str.split('/');
     if (date.length !== 3) {
@@ -320,7 +395,26 @@ const isDateFormatValid = (str) => {
         return false;
     }
     return true;
-}
+}*/
+
+// Bilal resolution
+const isDateFormatValid = date => {
+  
+    const month = date.split('/')[0]
+    const day = date.split('/')[1]
+    const year = date.split('/')[2]
+  
+    if(month.length !== 2 || day.length !== 2 || year.length !== 4) return false;
+  
+    if(Number(month) < 1 || Number(month) > 12) return false
+  
+    if(Number(day) < 1 || Number(month) > 31)  return false;
+  
+    if(Number(year) < 1) return false;
+
+    if(Number(month) === '01')
+    return true;
+  }
 
 
 console.log(isDateFormatValid("")); // false
@@ -352,13 +446,24 @@ const secondMax = (arr) => {
     let max = Math.max(...arr);
     let secondMax = Math.min(...arr);
     for (let el of arr) {
-        if (el > secondMax && el < max) {
+        if (el > secondMax && el !== max) {
             secondMax = el;
         }
     }
-    return secondMax;
+    return secondMax || max;
 }
 
+// Bilal resolution
+const secondMax = (arr) => {
+    const sortedArr = arr.sort((a,b) => b - a)
+  
+    for(num of sortedArr){
+      if(num !== sortedArr[0]) return num;
+    }
+    return sortedArr[0]
+  }
+  
+ 
 
 console.log(secondMax([7, 4, 4, 4, 23, 23, 23])); // 7
 console.log(secondMax([3, 4, 5, 6])); // 5
@@ -391,6 +496,40 @@ const secondMin = (arr) => {
     return secondMin;
 }
 
+ // Bilal resolution
+/*
+ const secondMin = (arr) => {
+    arr = arr.sort((a, b) => a - b)
+    
+    for(num of arr){
+        if(num !== arr[0]) return num;
+    }
+  
+    return arr[0]
+  }
+*/
+
+  ///
+
+  const secondMin = arr => {
+    let min = Infinity;
+    let secondMin = Infinity;
+    for(let el of arr){
+        if (el < min) {
+            secondMin = min;
+            min = el;
+        }
+        else {
+            if(el < secondMin && el !== min){
+                secondMin = el
+            }
+        }
+
+        return secondMin === Infinity ? min : secondMin;
+    }
+
+  }
+
 console.log(secondMin([7, 4, 4, 4, 23, 23, 23])); // 7
 console.log(secondMin([3, 4, 5, 6])); // 4
 console.log(secondMin([10])); // 10
@@ -409,9 +548,56 @@ mostRepeated(["TechGlobal"]) 				-> "TechGlobal"*/
 console.log('\n-------------Task-13------------\n');
 
 
-const mostRepeated = (arr) => arr.sort((a, b) => arr.filter((n) => n === a).length - arr.filter((n) => n === b).length).pop();
+//const mostRepeated = (arr) => arr.sort((a, b) => arr.filter((n) => n === a).length - arr.filter((n) => n === b).length).pop();
+
+// Bilal resolution
+
+const mostRepeated = (arr) => {
+    let counts = {};
+    let mostRepeated;
+    let largestCount = 0;
+
+    for(let el of arr) {
+        if(counts[el]) counts[el]++
+        else counts[el] = 1
+    }
+
+    for(let key in counts){
+        if (counts[key] > largestCount) {
+            mostRepeated = key;
+            largestCount = counts[key];
+        }
+
+    }
+    return mostRepeated
+}
+
+
+/*
+function mostRepeated(arr){
+    const countMap = {};
     
+    let mostCount = 0;
+    let mostCounted;
+    
+    for(const element of arr) {
+        if (countMap[element]) countMap[element] = 1;
+        else countMap[element] = countMap[element] + 1;
+
+        if(countMap[element] > mostCount){
+            mostCounted = element;
+            mostCount = countMap[element];
+
+        }
+       
+    }
+    return mostCounted
+}
+*/
+
 console.log(mostRepeated([4, 7, 4, 4, 4, 23, 23, 23])); // 4
 console.log(mostRepeated(["pen", "pencil", "pen", "123", "abc", "pen", "pencil"])); // "pen"
 console.log(mostRepeated([10])); // 10
 console.log(mostRepeated(["TechGlobal"])); // "TechGlobal"
+
+

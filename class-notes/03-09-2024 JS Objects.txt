@@ -1,6 +1,5 @@
 
 
-
 Object: it is a reference data type and stores data in key-value pairs.
 *** keys must unique (should not be duplicated)
 *** values can be null, undefined or duplicates
@@ -41,7 +40,7 @@ delete phone.colors;
 
 
 Higher order function: that is a function takes another function as an argument 
-Callback functionL that is a function used as an argument in a higher order function 
+Callback function: that is a function used as an argument in a higher order function 
 
 functionA(functionB)
 
