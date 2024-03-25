@@ -40,7 +40,7 @@ function firstlastWord(word) {
     console.log(firstlastWord(" ")); // ""
 
 
-// Task - 3  Has Vowel 
+// Task - 3  Has Vowel
 /*Write a function named hasVowel() which takes a string argument and returns true if the string has a vowel, returns false if the string 
 doesn’t contain any vowel letter. 
 NOTE: Vowels are = a, e, o, u, i. 
@@ -87,7 +87,9 @@ and false otherwise when invoked.
 NOTE: Vowel letters: a, e, i o, u, A, E, I, O, U  */
 
 function startVowel(word) {
+    // Check if the word is empty or whitespace
     let firstChar = word.toLowerCase()[0];
+    // Check if the first character is a vowel
     return ['a','e','i','o','u'].includes(firstChar);
 }
 

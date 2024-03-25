@@ -26,7 +26,6 @@ console.log(hasUpperCase("")); // false
 
 
 // Task -2
-
 /* 
 Requirement:
 Write a function named noDigit() which takes a string argument and returns a new string with all digits removed from the original string .
@@ -91,7 +90,6 @@ console.log(noVowel("125$")); // "125$"
 
 
 // Task - 4
-
 /*
 Requirement:
 Write a function named no13() which takes an array of numbers as argument and return a new array with all 13s replaced with 0s.  
@@ -115,7 +113,6 @@ console.log(no13([])); // []
 
 
 // Task - 5
-
 /*
 Requirement:
 Write a function named middleInt() which takes three number arguments and return the middle number.  
@@ -140,7 +137,6 @@ console.log(middleInt(-1, 25, 10)); // 10
 
 
 // Task - 6
-
 /*
 Requirement:
 Write a function named sumOfDigits() which takes a string argument and returns sum of all digits from the original string.  
@@ -169,7 +165,6 @@ console.log(sumOfDigits("")); // 0
 
 
 // Task - 7
-
 /*
 Requirement:
 Write a function named arrFactorial() which takes an array of numbers as argument and return the array with every number replaced with their factorials.
@@ -198,7 +193,6 @@ console.log(arrFactorial([])); // []
 
 
 // Task - 8
-
 /* 
 Requirement:
 Write a function named categorizeCharacters() which takes a string word as argument and return an array as letters at index of 0, digits at index of 1 and specials at index of 2. 
