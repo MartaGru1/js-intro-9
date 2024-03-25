@@ -81,7 +81,6 @@ const noVowel = (str) => {
     return result.join("");
 }
 
-
 console.log(noVowel("TechGlobal")); // "TchGlbl"
 console.log(noVowel("AEOxyz")); // "xyz"
 console.log(noVowel("Javascript")); // "Jvscrpt"
@@ -123,8 +122,8 @@ middleInt(5, 3, 5)  -> 5
 middleInt(1, 1, 1)  -> 1
 middleInt(-1, 25, 10)  -> 10
 */
-
 console.log( `\n------------Task-5------------\n`);
+
 
 const middleInt = (num1, num2, num3) => [num1, num2, num3].sort((a, b) => a - b)[1];
 
@@ -176,6 +175,7 @@ arrFactorial([]) 		-> []
 */
 console.log( `\n------------Task-7------------\n`);
 
+
 const arrFactorial = (arr) => {
     const factorial = (num) => {
         if (num === 0){
@@ -202,6 +202,7 @@ categorizeCharacters("abc123$#%") 	-> [ 'abc', '123', '$#%' ]
 categorizeCharacters("12ab$%3c%") 	-> [ 'abc', '123', '$%%' ]
 */
 console.log( `\n------------Task-8------------\n`);
+
 
 const categorizeCharacters = (str) => {
     let result = ["", "", ""];
