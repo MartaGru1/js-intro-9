@@ -621,6 +621,17 @@ console.log(reverseStringWords("")); // ""
 console.log(reverseStringWords(" ")); // ""
 
 
+function reverseStringWords(str) {
+
+    let strAsArr = str.trim().split(" ");
+
+    for(let i = 0; i < strAsArr.length; i++) {
+        strAsArr[i] = strAsArr[i].split("").reverse().join("");
+    }
+
+    return strAsArr.join(" ");
+}
+
 // Task - 23 - Count Consonants
 /* Write a function named as countConsonants() which takes a string word as an argument and 
 returns the count of the consonant letters when invoked.
@@ -991,6 +1002,18 @@ the array with every number replaced with their factorials.*/
 
 console.log('\n------------------- Array Factorial -------------------\n');
 
+
+const arrFactorial1 = arr => {
+    for(let i = 0; i < arr.length; i++){
+        let fac = 1;
+        for(let j = 2; j <= arr[i]; j++){
+            fac *= j;
+        }
+
+        arr[i] = fac
+        }
+        return arr;
+}
 function arrFactorial(arr) {
     return arr.map(num => {
         let result = 1;
@@ -1001,31 +1024,18 @@ function arrFactorial(arr) {
     });
 }
 
-const arrFactorial = (arr) => arr.map(num => {
-    let result = 1;
-    for (let i = 2; i <= num; i++) {
-        result *= i;
-    }
-    return result;
-});
 
-
-function factorial(num) {
-    if (num === 0 || num === 1) {
-        return 1; // Factorial of 0 and 1 is 1
-    } else {
-        let result = 1;
-        for (let i = 2; i <= num; i++) {
-            result *= i; // Multiply result by each number from 2 to num
-        }
-        return result;
-    }
+//way 3 (recursion)
+const factorial = (num) =>{
+   if(num === 0 || num === 1) return 1
+   else return num * factorial(num - 1)
 }
 
-function arrFactorial(arr) {
-    return arr.map(num => factorial(num));
-}
+const arrFactorial3 = (arr) => arr.map(num => factorial(num));
 
+
+//way 4
+const arrFactorial4 = (arr) => arr.map(num => [...Array(num).keys()].reduce((fac, ele) => fac * (ele+1), 1));
 
 console.log(arrFactorial([1, 2, 3 ,4])); // [1, 2, 6, 24]
 console.log(arrFactorial([0, 5])); // [1,120]

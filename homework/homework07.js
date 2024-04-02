@@ -19,6 +19,8 @@ const hasUpperCase = (str) => {
   return false;
 };
 
+const hasUpperCase = (str) => str.split('').filter(i => i >= 'A' && i <= 'Z').length > 0
+
 console.log(hasUpperCase("javascript")); // false
 console.log(hasUpperCase("John")); // true
 console.log(hasUpperCase("$125.0")); // false
@@ -48,6 +50,8 @@ const noDigit = (str) => {
     }
     return result.join("");
 }
+
+const noDigit = (str) => str.split('').filter(i => i < '0' || i > '9').join('');
 
 console.log(noDigit("")); // ""
 console.log(noDigit("Javascript")); // "Javascript"
@@ -81,6 +85,9 @@ const noVowel = (str) => {
     return result.join("");
 }
 
+const noVowel = (str) => str.split('').filter(i => !('aeiou'.includes(i.toLowerCase()))).join('');
+
+
 console.log(noVowel("TechGlobal")); // "TchGlbl"
 console.log(noVowel("AEOxyz")); // "xyz"
 console.log(noVowel("Javascript")); // "Jvscrpt"
@@ -105,6 +112,8 @@ const no13 = (arr) => {
     return arr.map(num =>num === 13 ? 0 : num);
 }
 
+const no13 = (arr) =>  arr.map(i => i === 13 ? 0 : i);
+
 console.log(no13([1, 2, 3 ,4])); // [1, 2, 3 ,4]
 console.log(no13([13, 2, 3])); // [0, 2, 3]
 console.log(no13([13, 13, 13 , 13, 13])); // [0, 0, 0, 0, 0]
@@ -127,6 +136,10 @@ console.log( `\n------------Task-5------------\n`);
 
 const middleInt = (num1, num2, num3) => [num1, num2, num3].sort((a, b) => a - b)[1];
 
+
+//    if(num1 >= num2 && num1 <= num3) return num1
+//    else if(num2 >= num1 && num2 <= num3) return num2
+//    else return num3;
 
 console.log(middleInt(1, 2, 2)); // 2
 console.log(middleInt(5, 5, 8)); // 5
@@ -157,6 +170,9 @@ const sumOfDigits = (str) => {
     return sum;
 }
 
+
+const sumOfDigits = (str) => str.split('').filter(i => i >= '0' && i <= '9').reduce((sum, num) => sum += Number(num), 0)
+
 console.log(sumOfDigits("Javascript")); // 0
 console.log(sumOfDigits("John’s age is 29")); // 11
 console.log(sumOfDigits("$125.0")); // 8
@@ -184,6 +200,18 @@ const arrFactorial = (arr) => {
         return num * factorial(num - 1);
     }
     return arr.map(num => factorial(num));
+}
+
+
+const arrFactorial = (arr) =>{
+    return arr.map(num => {
+        let fac = 1;
+        for(let i = 2; i <= num; i++){
+            fac *= i;
+        }
+        return fac;
+    })
+    
 }
 
 console.log(arrFactorial([1, 2, 3 ,4])); // [1, 2, 6, 24]
@@ -217,6 +245,16 @@ const categorizeCharacters = (str) => {
     }
     return result;
 }
+
+const categorizeCharacters = (str) => {
+    return str.split('').reduce((cat, i) => {
+        if(i.toLowerCase() >= 'a' && i.toLowerCase() <= 'z') cat[0] += i;
+        else if(i >= '0' && i <= '9') cat[1] += i;
+        else cat[2] += i;
+        return cat;
+    }, ['','',''])
+}
+
 
 console.log(categorizeCharacters("1234")); // [ '' , '1234', '' ]
 console.log(categorizeCharacters("abc123$#%")); // [ 'abc', '123', '$#%' ]
