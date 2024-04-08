@@ -1,0 +1,95 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+  body {
+    text-align: center;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  h1{
+    color: darkred;
+  }
+  p {
+    text-decoration:solid;
+    color: black;
+  }
+
+      div {
+        border: 1px solid;
+        margin-bottom: 8px;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Register Today</h1>
+
+    <!-- <form action="https://aws.com" method="POST"> -->
+    <form>
+      <fieldset>
+        <legend>Contact Form</legend>
+        <div>
+          <label for="fname">First Name*</label>
+          <input type="text" id="fname" name="fname"/>
+        </div>
+        <div>
+          <label for="lname">Last Name*</label>
+          <input type="text" id="lname" />
+        </div>
+        <div>
+          <label for="email">Email*</label>
+          <input type="email" id="email" />
+        </div>
+        <div>
+            <label for="phone">Phone*</label>
+            <input type="phone" id="phone" />
+          </div>
+          <div>
+            <p>Select Program*</p>
+            <select>
+                <option value="00"></option>
+                <option value="01">Software Engineer in Test (SDET)</option>
+                <option value="02">Cypress Automation with JavaScpript</option>
+                <option value="03">Playwrite Automation with TypeScript</option>
+        </select>
+          </div>
+          <div>
+            <p>Program Type*</p>
+            <select>
+                <option value="00"></option>
+                <option value="01">Online</option>
+                <option value="02">In-person</option>
+        </select>
+          </div>
+          <div>
+            <p>English Fluency Level*</p>
+            <select>
+                <option value="00"></option>
+                <option value="01">Beginner</option>
+                <option value="02">Intermediate</option>
+                <option value="03">Advanced</option>
+                <option value="04">Fluent</option>
+        </select>
+          </div>
+          <div>
+            <p>How did you hear about us?*</p>
+            <select>
+                <option value="00"></option>
+                <option value="01">Google Search</option>
+                <option value="02">Refferal</option>
+                <option value="03">Social Media</option>
+        </select>
+          </div>
+        <div>
+          <input type="submit" />
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>

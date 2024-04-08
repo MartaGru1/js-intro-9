@@ -20,6 +20,9 @@ const hasLowerCase = (str) => {
     return false;
     }
 
+// Bilal solution
+const hasLowerCase = (str) =>  str.split('').filter(i => i >= 'a' && i <= 'z').length > 0
+
 console.log(hasLowerCase("")); // false
 console.log(hasLowerCase("JAVASCRIPT")); // false
 console.log(hasLowerCase("hello")); // true
@@ -113,6 +116,14 @@ const reverseSentence = (str) => {
     return reversedWords.join(" ");
 }
 
+// Bilal solution
+const reverseSentence = (str) => {
+    if(!str.includes(' ')) return 'There is not enough words!'
+
+    str =  str.split(' ').reverse().join(' ').toLowerCase()
+    return str.slice(0,1).toUpperCase() + str.slice(1)
+}
+
 console.log(reverseSentence("Hello")); // "There is not enough words!"
 console.log(reverseSentence("Javascript is fun")); // "Fun is javascript"
 console.log(reverseSentence("This is a sentence")); // "Sentence a is this"
@@ -133,6 +144,10 @@ const removeStringSpecialsDigits = (str) => {
     return str.split('').filter(i => (i >= 'A' && i <= 'Z') || (i >= 'a' && i <= 'z') || i === ' ').join('');
 }
 
+
+//Bilal solution
+const removeStringSpecialsDigits = (str) =>  str.split('').filter(i => (i.toLowerCase() >= 'a' && i.toLowerCase() <= 'z' ) || i === ' ').join('')
+
 console.log(removeStringSpecialsDigits("123Javascript #$%is fun")); // "Javascript is fun"
 console.log(removeStringSpecialsDigits("Cypress")); // "Cypress"
 console.log(removeStringSpecialsDigits("Automation123#$%")); // "Automation"
@@ -152,8 +167,11 @@ console.log( `\n------------Task-7------------\n`);
 
 const removeArraySpecialsDigits = (arr) => {
     return arr.map(i => i.split('').filter(j => (j >= 'A' && j <= 'Z') || (j >= 'a' && j <= 'z') || j === ' ').join(''));
-
 }
+
+//Bilal solution
+const removeArraySpecialsDigits = (arr) =>  arr.map(i => i.split('').filter(i => i.toLowerCase() >= 'a' && i.toLowerCase() <= 'z').join(''))
+
 
 console.log(removeArraySpecialsDigits(["123Javascript", "#$%is", "fun"])); // ["Javascript", "is", "fun"]
 console.log(removeArraySpecialsDigits(["Cypress", "123$%", "###"])); // ["Cypress", "", ""]
@@ -173,6 +191,18 @@ console.log( `\n------------Task-8------------\n`);
 
 const getCommons = (arr1, arr2) => {
     return arr1.filter(i => arr2.includes(i));
+}
+
+//Bilal solution
+const getCommons = (arr1, arr2) => {
+    arr1 =  arr1.filter(x => arr2.includes(x))
+    
+    let result = [];
+    arr1.forEach(i => {
+     if(!result.includes(i)) result.push(i)
+   })
+ 
+   return result;
 }
 
 console.log(getCommons( ["Javascript", "is", "fun"], ["abc", "xyz", "123"] )); // []
@@ -198,8 +228,18 @@ const noXInVariables = (arr) => {
         if (typeof i === 'string') {
             return i.split('').filter(j => j.toLowerCase() !== 'x').join('');
         }
-        return i;
-    }).filter(i => i !== '');
+        return i.filter(i => i !== '');
+    });
+}
+
+//Bilal solution
+const noXInVariables = (arr) => {
+    arr = arr.map(el => {
+        if(typeof el === 'string')
+        return el.split('').filter(x => x.toLowerCase() !== 'x').join('')
+        else return el
+    })
+    return arr.filter(i => i)
 }
 
 

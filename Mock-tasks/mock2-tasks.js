@@ -345,10 +345,10 @@ function countNeg(arr) {
     return count;
 }
 //
-function countNeg(arr){
+//function countNeg(arr){
 // filter the array to get only negative numbers and return the length of the filtered array
-    return arr.filter(num => num < 0).length
-}
+  //  return arr.filter(num => num < 0).length
+//}
 
 console.log(countNeg([-45, 0, 0, 34, 5, 67])); // 1
 console.log(countNeg([-23, -4, 0, 2, 5, 90, 123])); // 2
@@ -508,6 +508,23 @@ For two elements to be considered as duplicated, value and data types of the ele
 
 console.log('\n------------------- First Duplicate Element -------------------\n');
 
+/* 
+
+Inside the function, we initialize an empty object named seen. This object will be used to keep track of the elements we have encountered so far in the array.
+
+We then loop through each element of the array using a for loop. We use i as the index to access each element of the array.
+
+Within the loop, we check if the current element arr[i] already exists in the seen object. We use seen[num] to check if the current element num exists in the object. If it does, it means that we have encountered this element before, and it is a duplicate. In this case, we return the duplicate element num.
+
+If the current element num is not found in the seen object, we mark it as seen by setting seen[num] to true. This indicates that we have encountered this element in the array.
+
+If we finish looping through the entire array without finding any duplicates, we return -1, indicating that no duplicates were found in the array.
+
+Finally, we have example usage of the function with two arrays array1 and array2. We call the firstDuplicate() function with these arrays and log the results to the console.
+
+In summary, the function iterates through the array, keeping track of encountered elements in an object. If it encounters a duplicate element, it returns that element. If no duplicates are found, it returns -1.
+*/
+//The function firstDuplicate() takes an array arr as its parameter.
 function firstDuplicate(arr) {
     // Iterate through the array
     for (let i = 0; i < arr.length; i++) {
@@ -539,22 +556,9 @@ NOTE: Make your code dynamic that works for any array and return empty array if 
 duplicates in the array. For two elements to be considered as duplicated, value and data types of the elements must be same.*/
 
 console.log('\n------------------- Find All Duplicate Elements -------------------\n');
-/* This JavaScript function, `getDuplicates`, takes an array `arr` as input and returns an array containing all the duplicate elements found in the input array.
 
-Here's how it works:
-
-1. It initializes an empty array called `duplicates` to store the duplicate elements.
-2. It iterates through each element of the input array using a nested loop.
-   - The outer loop runs from the first element (`i = 0`) to the second last element of the array (`i < arr.length`).
-   - The inner loop starts from the element next to the current element of the outer loop (`j = i + 1`) and runs until the last element of the array (`j < arr.length`).
-3. Inside the nested loops, it checks if the current element at index `i` is equal to any subsequent element at index `j`.
-4. If a duplicate is found (i.e., `arr[i] === arr[j]`), it checks whether the duplicate element is already present in the `duplicates` array using the `includes` method.
-5. If the duplicate element is not already in the `duplicates` array, it adds it to the array using the `push` method.
-6. Finally, it returns the `duplicates` array containing all the duplicate elements found in the input array.
-
-This function efficiently identifies and collects duplicate elements in the input array, ensuring that each duplicate is added only once to the output array.*/
-function getDuplicates(arr) {
     let duplicates = [];
+    // Iterate through the array
     for (let i = 0; i < arr.length; i++) {
         for (let j = i + 1; j < arr.length; j++) {
             if (arr[i] === arr[j]) {
