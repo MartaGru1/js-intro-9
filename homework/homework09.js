@@ -170,15 +170,51 @@ countOccurrencesOfCharacters("www" ) 	-> "3w"
 */ 
 console.log('\n----------Task-5----------\n')
 
+// const countOccurrencesOfCharacters = (str) => {
+//     if(str.length === 0) return "";
+//     const countMap = str.split('').reduce((acc, char) => {
+//         acc[char] = (acc[char] || 0) + 1;
+//         return acc;
+//     }, {});
+//     return Object.entries(countMap).map(([key, value]) => `${value}${key}`).join('');
+// }
+
+// Bilal resolution
+
 const countOccurrencesOfCharacters = (str) => {
-    if(str.length === 0) return "";
-    const countMap = str.split('').reduce((acc, char) => {
-        acc[char] = (acc[char] || 0) + 1;
-        return acc;
-    }, {});
-    return Object.entries(countMap).map(([key, value]) => `${value}${key}`).join('');
+    if(str ==='') return '';
+
+    let result = "";
+    let count = 1;
+    let currentLetter = str[0];
+    for(let i = 1; i < str.length; i++){
+        if(str[i] === currentLetter) count++;
+        else{
+            result += count + currentLetter;
+            currentLetter = str[i];
+            count = 1;
+        }
+    }
+    result += count + currentLetter;
+    return result;
 }
 
+const countOccurrencesOfCharacters = (str) => {
+    if(!str) return '';
+
+    let result = '';
+    let count = 1;
+
+    for(let i = 0; i < str.length; i++){
+        if(str[i] === str[i + 1]) count++;
+        else{
+            result += count + str[i];
+            currentLetter = str[i];
+            count = 1;
+        }
+    }
+    return result;
+}
 
 console.log(countOccurrencesOfCharacters("")); // ""
 console.log(countOccurrencesOfCharacters("abc")); // "1a1b1c"
@@ -209,6 +245,18 @@ const fibonacciSeries1 = (n) => {
     return arr.slice(0, n);
 }
 
+const fibonacciSeries1 = (num) => {
+    if(num ===1) return [0];
+    if(num === 2) return [0, 1];
+
+    let result = [0, 1];
+
+    for(let i = 2; i < num; i++){
+        result.push(result[result.length -1] + result[result.length -2]);
+    }
+    return result;
+}
+
 console.log(fibonacciSeries1(3)); // [0, 1, 1]
 console.log(fibonacciSeries1(5)); // [0, 1, 1, 2, 3]
 console.log(fibonacciSeries1(7)); // [0, 1, 1, 2, 3, 5, 8]
@@ -236,6 +284,14 @@ const fibonacciSeries2 = (n) => {
         arr.push(arr[i - 1] + arr[i - 2]);
     }
     return arr[n - 1];
+}
+
+
+const fibonacciSeries2 = (num) => {
+    if(num ===1) return 0;
+    if(num === 2) return 1;
+
+    return fibonacciSeries2(num - 1) + fibonacciSeries2(num - 2);
 }
 
 console.log(fibonacciSeries2(2)); // 1
@@ -271,6 +327,12 @@ const findUniques = (arr1, arr2) => {
     return result;
 }
 
+//Bilal resolution
+const findUniques = (arr1, arr2) => {
+
+    return [...new Set([arr1.concat(arr2).filter(i => !(arr1.includes(i) && arr2.includes(i)))])];
+}
+
 console.log(findUniques([], [])); // []
 console.log(findUniques([], [1, 2, 3, 2])); // [1, 2, 3]
 console.log(findUniques([1, 2, 3, 4], [3, 4, 5, 5])); // [1, 2, 5]
@@ -302,6 +364,23 @@ const isPowerOf3 = (num) => {
     }
     return false;
 }
+// Recursion resolution
+
+const isPowerOf3 = (num) => {
+    if(num === 1) return true;
+    if(num < 3) return false;
+    return isPowerOf3(num / 3);
+}
+
+// Bilal resolution
+
+const isPowerOf3 = (num) => {
+    for(let i=0; i > 0; i/=3){
+        if(num === i) return true;
+    }
+    return false;
+}
+
 
 console.log(isPowerOf3(1)); // true
 console.log(isPowerOf3(2)); // false
