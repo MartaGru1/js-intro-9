@@ -57,34 +57,69 @@ calculateTotalPrice1({ Apple: 4, Pineapple: 1, Orange: 1, Mango:3 })  -> 29.51 *
 
 console.log("\n----------Task-02-----------\n");
 
-const calculateTotalPrice2 = (items) => {
-    let priceList = {
+const calculateTotalPrice2 = items => {
+    const prices = {
         Apple: 2.00,
         Orange: 3.29,
         Mango: 4.99,
         Pineapple: 5.25
     };
     let total = 0;
-    let appleCount = 0;
-    let mangoCount = 0;
-    for (let item in items) {
-        let quantity = items[item];
-        let price = priceList[item];
-        let itemTotal = price * quantity;
-        if (item === 'Apple') {
-            let discountApples = Math.floor(quantity / 2);
-            itemTotal -= discountApples * price;
-            appleCount += quantity;
-        }
-        if (item === 'Mango') {
-            let freeMangoes = Math.floor(quantity / 3);
-            itemTotal -= freeMangoes * price;
-            mangoCount += quantity;
-        }
-        total += itemTotal;
+  
+    for(let item in items){
+  
+        const noSale = items[item] * prices[item]
+        let sale = 0;
+  
+        if(item === 'Apple') sale = (Math.floor(items[item] / 2) * prices[item]) / 2
+        else if(item === 'Mango') sale = (Math.floor(items[item] / 4) * prices[item])
+            
+        total += noSale - sale;
+        
     }
-    return total.toFixed(2);
+    return total === 0 ? total : total.toFixed(2)
+  }
+
+  const calculateTotalPrice3 = items => {
+    const menu = {
+        Apple : 2.00,
+        Orange: 3.29,
+        Mango: 4.99,
+        Pineapple: 5.25
+    }
+
+    let total = 0;
+
+    for(let item in items){
+        let noSale = menu[item] * items[item];
+        let sale = 0;
+        if(item === 'Apple') sale = Math.floor(items['Apple'] / 2) * (menu['Apple']/2)
+        if(item === 'Mango') sale = Math.floor(items['Mango'] / 4) * (menu['Mango'])
+
+        total += noSale - sale;
+    }
+
+    return total === 0 ? total : total.toFixed(2)
 }
+
+const calculateTotalPrice2Way2 = (items) => {
+    const prices = {
+        Apple: 2.00,
+        Orange: 3.29,
+        Mango: 4.99,
+        Pineapple: 5.25
+    };
+
+    let total = 0;
+    total += (items.Apple ? Math.ceil(items.Apple / 2) * prices.Apple + Math.floor(items.Apple / 2) * prices.Apple * 0.5 : 0);
+    total += (items.Mango ? Math.ceil(items.Mango * 3 / 4) * prices.Mango : 0);
+    total += (items.Orange ? items.Orange * prices.Orange : 0);
+    total += (items.Pineapple ? items.Pineapple * prices.Pineapple : 0);
+
+    return total.toFixed(2);
+};
+
+
 
 console.log(calculateTotalPrice2({ Apple: 3, Mango: 5 })); // 24.96
 console.log(calculateTotalPrice2({ Apple: 4, Mango: 8, Orange: 3 })); // 45.81
@@ -116,6 +151,9 @@ function nthWord(str, num) {
     }
     return words[num - 1];
 }
+
+///
+const nthWord = (str, num) =>  str.split(' ')[num-1] || ""
 
 console.log(nthWord("I like programming languages", 2)); // "like"
 console.log(nthWord("QA stands for Quality Assurance", 4)); // "Quality"
@@ -160,6 +198,20 @@ function isArmstrong(num) {
     return sum === num;
 }
 
+////
+const isArmstrong = num => num.toFixed().split('').reduce((total, i) => total + Math.pow(i,num.toFixed().length), 0) === num
+
+////
+
+const isArmstrong = num => {//153
+    const numAsSTR = num.toFixed()//"153"
+    const lengthOfNum = numAsSTR.length//3
+
+    let armstring = numAsSTR.split('').reduce((total, i) => total += i ** lengthOfNum ,0)
+
+    return armstring === num
+}
+
 console.log(isArmstrong(153)); // true
 console.log(isArmstrong(123)); // false
 console.log(isArmstrong(1634)); // true
@@ -190,6 +242,16 @@ function reverseNumber(num) {
     return reversed;
 }
 
+////
+const reverseNumber = num => {
+    let reversed = 0;
+    for(let i = num; i > 0;  i = Math.floor(i / 10)){
+        reversed = (reversed * 10) + (i % 10);
+    }
+    return reversed;
+}
+
+
 console.log(reverseNumber(371)); // 173
 console.log(reverseNumber(123)); // 321
 console.log(reverseNumber(12)); // 21
@@ -217,6 +279,10 @@ console.log("\n----------Task-06-----------\n");
 function doubleOrTriple(arr, bool) {
     return arr.map((el) => bool ? el * 2 : el * 3);
 }
+
+
+/////////
+const doubleOrTriple = (arr, isDouble) => isDouble ? arr.map((el) => el * 2) : arr.map((el) => el * 3)
 
 console.log(doubleOrTriple([1, 5, 10], true)); // [2, 10, 20]
 console.log(doubleOrTriple([3, 7, 2], false)); // [9, 21, 6]
@@ -253,6 +319,43 @@ function splitString(str, num) {
     }
     return result;
 }
+
+const splitString = (str, num) => {
+    if (str.length < num || str.length % num !== 0) {
+        return "";
+    }
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+        if (i % num === 0 && i !== 0) {
+            result += " ";
+        }
+        result += str[i];
+    }
+    return result;
+}
+const splitString = (str, num) => (str.length % num !== 0 || num > str.length) ? '' : str.slice(0, num) + ' ' + str.slice(num)
+
+const splitString2 = (str, num) => {//12345 67890 98765 -> 12345 67890 98765
+    if (str.length % num !== 0 || str.length < num) return '';
+    const parts = [];
+    for (let i = 0; i < str.length; i += num) {
+        parts.push(str.slice(i, i + num));
+    }
+    return parts.join(' ');
+};
+
+const splitString3 = (str, num) => {
+    if (str.length % num !== 0) return '';
+    
+    let result = '';
+
+    for (let i = 0; i < str.length; i++) {
+        result += str[i];
+        if ((i + 1) % num === 0) result += ' ';
+}
+return result.trim()
+}
+
 
 console.log(splitString("JavaScript", 5)); // "JavaS cript"
 console.log(splitString("Java", 2)); // "Ja va"

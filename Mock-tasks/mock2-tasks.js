@@ -13,6 +13,9 @@ function doubleOrTripleWord(word) {
         return word.repeat(2);
     }
 }   
+
+const doubleOrTripleWord = (word) => word.length % 2 === 0 ? word.repeat(3) : word.repeat(2);
+
 console.log(doubleOrTripleWord("Tech")); // "TechTechTech"
 console.log(doubleOrTripleWord("Apple")); // "AppleApple"
 console.log(doubleOrTripleWord("")); // ""
@@ -74,6 +77,9 @@ function hasVowel(str) {
     return false; // Return false if no vowel is found
 }
 
+const hasVowel = (str) => str.toLowerCase().split('').some(char => 'aeiou'.includes(char));
+// Using some method - Convert the string to lowercase for case-insensitive comparison and check if any character is a vowel
+
 console.log(hasVowel("")); // false
 console.log(hasVowel("Javascript")); // true
 console.log(hasVowel("Tech Global")); // true
@@ -132,6 +138,9 @@ function averageOfEdges(num1, num2, num3) {
     return (min + max) / 2;
 }
 
+const averageOfEdges = (a, b, c) => (Math.min(a, b, c) + Math.max(a, b, c)) / 2;
+
+
 console.log(averageOfEdges(0, 0, 0)); // 0
 console.log(averageOfEdges(0, 0, 6)); // 3
 console.log(averageOfEdges(-2, -2, 10)); // 4
@@ -180,6 +189,9 @@ function swap4(str){
   // Swap the first and last 4 characters
     return last4 + middle + first4
 }
+
+const swap4 = (str) => str.length >= 8 ? str.slice(-4) + str.slice(4, -4) + str.slice(0, 4) : "";
+
 
 console.log(swap4("abc")); // ""
 console.log(swap4("JavaScript")); // "riptScJava"
@@ -559,7 +571,7 @@ console.log('\n------------------- Find All Duplicate Elements -----------------
 
     let duplicates = [];
     // Iterate through the array
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) { // 
         for (let j = i + 1; j < arr.length; j++) {
             if (arr[i] === arr[j]) {
                 if (!duplicates.includes(arr[i])) {
@@ -567,9 +579,9 @@ console.log('\n------------------- Find All Duplicate Elements -----------------
                 }
             }
         }
+        return duplicates; 
     }
-    return duplicates;
-}  
+    
 
 console.log(getDuplicates([ 0, -4, -7, 0, 5, 10, 45, -7, 0 ])); // [ 0, -7 ]
 console.log(getDuplicates([ 1, 2, 5, 0, 7 ])); // [ ]
