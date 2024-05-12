@@ -11,23 +11,7 @@ countPalindrome("No palindrome here") 		-> 0
 */
 console.log('\n---------Task-1-------\n');
 
-const countPalindrome = str => {  
-    const isPalindrome = word => {
-        word = word.toLowerCase();
-        let start = 0;
-        let end = word.length - 1;
-        while (start < end) {
-            if (word[start] !== word[end]) {
-                return false;
-            }
-            start++;
-            end--;
-        }
-        return true;
-    }
-    return str.split(/\s+/).filter(word => word.length > 0 && isPalindrome(word)).length;
-}
-
+const countPalindrome = str => str.toLowerCase().split(' ').reduce((count, i)=>(i && i === i.split('').reverse().join('')) ? count + 1 : count, 0)
 
 console.log(countPalindrome("Mom and Dad")); //2
 console.log(countPalindrome("See you at noon")); //1
@@ -59,6 +43,12 @@ const sum = (arr, isEven) => {
     });
     return sum;
 }
+
+//Bilal solution
+const sum = (arr, addEvens) => 
+    (addEvens)?
+         arr.reduce((sum, num, index) => index % 2 === 0 ? sum + num : sum, 0):
+         arr.reduce((sum, num, index) => index % 2 !== 0 ? sum + num : sum, 0)
 
 console.log(sum([1, 5, 10], true)); //11
 console.log(sum([3, 7, 2, 5, 10], false)); //12
@@ -109,28 +99,15 @@ canFormString("12", "123") 			-> false
 console.log('\n---------Task-4-------\n');
 
 const canFormString = (str1, str2) => {
-        let emptyStr1 = "";
-        let emptyStr2 = "";
-        
-        for (let char of str1) {
-            if (char !== ' ') {
-                emptyStr1 += char.toLowerCase();
-            }
-        }
-        
-        for (let char of str2) {
-            if (char !== ' ') {
-                emptyStr2 += char.toLowerCase();
-            }
-        }
-        
-        const sortStr1 = emptyStr1.split('').sort().join('');
-        const sortStr2 = emptyStr2.split('').sort().join('');
-        
-        return sortStr1 === sortStr2;
+    let arr1 = str1.toLowerCase().split('')
+    let arr2 = str2.toLowerCase().split('').filter(x => x != ' ')
+
+    for(let i = 0; i < arr2.length; i++){
+        if(arr1.includes(arr2[i])) arr1.splice(arr1.indexOf(arr2[i]),1)
+        else return false;
     }
-
-
+    return true
+}
 
 console.log(canFormString("Hello", "Hi")); //false
 console.log(canFormString("programming", "gaming")); //true
@@ -175,6 +152,14 @@ const isAnagram = (str1, str2) => {
     
     return sortStr1 === sortStr2;
 
+
+    //Bilal solution
+    const isAnagram = (str1, str2) => {
+        let modifiedStr1 = str1.toLowerCase().replaceAll(' ','').split('').sort().join('')
+        let modifiedStr2 = str2.toLowerCase().replaceAll(' ','').split('').sort().join('')
+    
+        return modifiedStr1 === modifiedStr2 && str1 !== str2
+    }
 }
 
 console.log(isAnagram("Apple", "Peach")); //false
@@ -208,6 +193,17 @@ const count = (arr, isEven) => {
     return count;
 }
 
+//Bilal solution
+const count = (array, boolean) =>{
+    let count = 0;
+    for(let i = 0; i < array.length; i++){
+      if(boolean === true && array[i] % 2 === 0) count++
+      else if (boolean === false && array[i] % 2 !== 0 ) count++
+  
+    }
+  return count; 
+  }
+
 console.log(count([1, 5, 10], true)); //1
 console.log(count([3, 7, 2, 5, 10], false)); //3
 console.log(count([-1, 1, -2, 2], true)); //2
@@ -233,6 +229,12 @@ const sumDigitsDouble = str => {
         return -1;
     }
     return digits.reduce((acc, num) => acc + parseInt(num), 0) * 2;
+}
+
+//Bilal solution
+const sumDigitsDouble = str => {
+    let result =  str.split('').filter(i => i >= '0' && i <= '9').reduce((sum, i) => sum + Number(i),0) * 2
+    return result > 0 ? result : -1
 }
 
 console.log(sumDigitsDouble("Javascript")); //-1
@@ -264,6 +266,16 @@ const countOccurrence = (str1, str2) => {
         
         return count;
     }
+
+    //Bilal solution
+    const countOccurrence = (str1, str2) => {
+        let arrOfOccurrences = []
+      
+        for(char of str2){
+          arrOfOccurrences.push(str1.split('').filter(c => c.toLowerCase() === char.toLowerCase()).length)
+        }
+        return arrOfOccurrences.sort()[0]
+      }
 
 console.log(countOccurrence("Javascript", "Java")); //1
 console.log(countOccurrence("Hello", "World")); //0
