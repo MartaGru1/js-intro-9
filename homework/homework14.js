@@ -11,15 +11,7 @@ repeatingX("xxxxx") 		-> true
 */
 console.log('\n---------Task-1-------\n');
 
-const repeatingX = str =>{
-    let lowerStr = str.toLowerCase();
-    for (let i = 0; i < lowerStr.length - 1; i++) {
-        if (lowerStr[i] === 'x' && lowerStr[i + 1] === 'x') {
-            return true;
-        }
-    }
-    return false;
-}
+const repeatingX = (str) => str.toLowerCase().includes('xx')
 
 console.log(repeatingX("xTechxGlobalx")); //false
 console.log(repeatingX("Hello Xx World")); //true
@@ -42,16 +34,7 @@ isPerfectSquare(144) 	-> true
  */
 console.log('\n---------Task-2-------\n');
 
-const isPerfectSquare = num => {
-    if (num < 0) return false;
-    if (num === 0 || num === 1) return true;
-    for (let i = 2; i <= num / 2; i++) {
-        if (i * i === num) {
-            return true;
-        }
-    }
-    return false;
-}
+const isPerfectSquare = (num) => Math.sqrt(num) % 1 === 0
 
 console.log(isPerfectSquare(25)); //true
 console.log(isPerfectSquare(24)); //false
@@ -77,13 +60,7 @@ convertTemperature(-40, 'Fahrenheit’) 	-> -40
 */
 console.log('\n---------Task-3-------\n');
 
-const convertTemperature = (temp, unit) => {
-    if (unit === 'Celsius') {
-        return (temp * 9 / 5) + 32;
-    } else if (unit === 'Fahrenheit') {
-        return (temp - 32) * 5 / 9;
-    }
-}
+const convertTemperature = (temp, str) => str.toLowerCase() === 'celsius' ? (temp * 9/5) + 32 : (temp - 32) * 5/9
 
 console.log(convertTemperature(100, 'Celsius')); //212
 console.log(convertTemperature(32, 'Fahrenheit')); //0
@@ -106,15 +83,7 @@ sumOfEvenNumbers( [ 10, 20, 30, 40, 50 ] ) 		-> 150
 */
 console.log('\n---------Task-4-------\n');
 
-const sumOfEvenNumbers = arr => {
-    let sum = 0;
-    for (let num of arr) {
-        if (num % 2 === 0) {
-            sum += num;
-        }
-    }
-    return sum;
-}
+const sumOfEvenNumbers = (arr) => arr.filter(num => num % 2 === 0).reduce((sum, num) => sum + num, 0)
 
 console.log(sumOfEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])); //30
 console.log(sumOfEvenNumbers([2, 4, 6, 8, 10, 12, 14, 16, 18, 20])); //110
@@ -137,12 +106,7 @@ capsOdds(["John !@#$%", "^&*() Doe"]) 		-> ["John !@#$%", "^&*() DOE"]
 
 console.log('\n---------Task-5-------\n');
 
-const capsOdds = arr => {
-    for (let i = 1; i < arr.length; i += 2) {
-        arr[i] = arr[i].toUpperCase();
-    }
-    return arr;
-}
+const capsOdds = (arr) => arr.map((str, index) => index % 2 !== 0 ? str.toUpperCase() : str)
 
 console.log(capsOdds(["Hello", "World"])); //["Hello", "WORLD"]
 console.log(capsOdds(["Jan", "Feb", "Mar", "Apr"])); //["Jan", "FEB", "Mar", "APR"]

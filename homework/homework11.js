@@ -32,18 +32,6 @@ sum([1, 2, 3, 4, -4], true) 		-> 0
 */
 console.log('\n---------Task-2-------\n');
 
-const sum = (arr, isEven) => {
-    let sum = 0;
-    arr.forEach((num, index) => {
-        if (isEven && index % 2 === 0) {
-            sum += num;
-        } else if (!isEven && index % 2 !== 0) {
-            sum += num;
-        }
-    });
-    return sum;
-}
-
 //Bilal solution
 const sum = (arr, addEvens) => 
     (addEvens)?
@@ -151,15 +139,14 @@ const isAnagram = (str1, str2) => {
     const sortStr2 = emptyStr2.split('').sort().join('');
     
     return sortStr1 === sortStr2;
+}
 
+//Bilal solution
+const isAnagram = (str1, str2) => {
+    let modifiedStr1 = str1.toLowerCase().replaceAll(' ','').split('').sort().join('')
+    let modifiedStr2 = str2.toLowerCase().replaceAll(' ','').split('').sort().join('')
 
-    //Bilal solution
-    const isAnagram = (str1, str2) => {
-        let modifiedStr1 = str1.toLowerCase().replaceAll(' ','').split('').sort().join('')
-        let modifiedStr2 = str2.toLowerCase().replaceAll(' ','').split('').sort().join('')
-    
-        return modifiedStr1 === modifiedStr2 && str1 !== str2
-    }
+    return modifiedStr1 === modifiedStr2 && str1 !== str2
 }
 
 console.log(isAnagram("Apple", "Peach")); //false

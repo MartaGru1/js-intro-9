@@ -59,9 +59,7 @@ decimal2( [4.35623, 8.9742] ) 		-> [ 4.36, 8.97 ]
 
 console.log('\n---------Task-3-------\n');
 
-const decimal2 = (arr) => {
-    return arr.map(num => Number(num.toFixed(2)));
-}
+const decimal2 = (arr) => arr.map(x => x == x.toFixed(2) ? x : x.toFixed(2))
 
 console.log(decimal2([94.356, 8.9752])); //[ 94.36, 8.98 ]
 console.log(decimal2([76.62, 128.4, 84])); //[ 76.62, 128.4, 84 ]
@@ -86,11 +84,10 @@ myPow(5, 3)  ​	-> 125
 
 console.log('\n---------Task-4-------\n');
 
-const myPow = (x, n) => {
-    if (n === 0) return 1;
-    let result = x;
-    for (let i = 1; i < n; i++) {
-        result *= x;
+const myPow = (num1, num2) => {
+    let result = 1;
+    for(let i = 1; i <= num2; i++){
+        result *= num1;
     }
     return result;
 }
@@ -118,16 +115,7 @@ findLongestWord("      ") 					-> ""
 
 console.log('\n---------Task-5-------\n');
 
-const findLongestWord = (str) => {
-    const words = str.split(' ');
-    let longestWord = '';
-    words.forEach(word => {
-        if (word.length > longestWord.length) {
-            longestWord = word;
-        }
-    });
-    return longestWord;
-}
+const findLongestWord = (str) => str.split(' ').reduce((longest, i) => i.length > longest.length ? i : longest,"")
 
 console.log(findLongestWord("The quick brown fox jumped over the lazy dog")); //"jumped"
 console.log(findLongestWord("This is a sample string for testing")); //"testing"

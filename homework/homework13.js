@@ -13,17 +13,10 @@ countVC("")​                         	-> {vowels: 0, consonants: 0
 console.log('\n---------Task-1-------\n');
 
 const countVC = (str) => {
-    const vowels = 'aeiou';
-    let countVowels = 0;
-    let countConsonants = 0;
-    for (let char of str) {
-        if (vowels.includes(char.toLowerCase())) {
-            countVowels++;
-        } else if (char.match(/[a-z]/i)) {
-            countConsonants++;
-        }
+    return VC_Count = {
+        'vowels': str.split('').filter(x => 'aeiouAEIOU'.includes(x)).length,
+        'consonants' :  str.split('').filter(x => (x.toLowerCase() >= 'a' && x.toLowerCase() <= 'z') && !('aeiouAEIOU'.includes(x))).length
     }
-    return { vowels: countVowels, consonants: countConsonants };
 }
 
 console.log(countVC("Hello")); //{vowels: 2, consonants: 3}
@@ -50,23 +43,21 @@ countChars("")​                                     	-> {}
 console.log('\n---------Task-2-------\n');
 
 const countChars = (str) => {
-    let countLetters = 0;
-    let countNumbers = 0;
-    let countSpecials = 0;
-    for (let char of str) {
-        if (char.match(/[a-z]/i)) {
-            countLetters++;
-        } else if (char.match(/[0-9]/)) {
-            countNumbers++;
-        } else if (char.match(/[!@#$%^&*(),.?":{}|<>]/)) {
-            countSpecials++;
-        }
-    }
-    const result = {};
-    if (countLetters > 0) result.letters = countLetters;
-    if (countNumbers > 0) result.numbers = countNumbers;
-    if (countSpecials > 0) result.specials = countSpecials;
-    return result;
+    str = str.replaceAll(' ', '')
+    let charCount = {}
+
+    let letterCount = str.split('').filter(x => x.toLowerCase() >= 'a' && x.toLowerCase() <= 'z').length
+    letterCount > 0 ? charCount['letters'] = letterCount : ''
+
+
+    let numberCount = str.split('').filter(x => x >= '0' && x <= '9').length
+    numberCount > 0 ? charCount['numbers'] = numberCount : ''
+
+
+    let specialCount = str.split('').filter(x => !(x.toLowerCase() >= 'a' && x.toLowerCase() <= 'z')).filter(x => !(x >= '0' && x <= '9')).length
+    specialCount > 0 ? charCount['specials'] = specialCount : ''
+
+    return charCount
 }
 
 console.log(countChars("Hello")); //{letters: 5}
@@ -94,23 +85,21 @@ maxOccurrences("")   		-> ""
 console.log('\n---------Task-3-------\n');
 
 const maxOccurrences = (str) => {
-    const charMap = {};
-    let maxCount = 0;
-    let maxChar = '';
-    for (let char of str) {
-        if (char !== ' ') {
-            if (charMap[char]) {
-                charMap[char]++;
-            } else {
-                charMap[char] = 1;
-            }
-            if (charMap[char] > maxCount) {
-                maxCount = charMap[char];
-                maxChar = char;
-            }
+    let occurences = {}
+    let highestCount = 0;
+    let highestChar = '';
+
+    str.split('').forEach(e =>e !== ' ' ? occurences[e] = occurences[e] + 1 || 1 : '');
+
+    for(key in occurences){
+        if(occurences[key] > highestCount){
+            highestCount = occurences[key]
+            highestChar = key;
         }
     }
-    return maxChar;
+
+    return highestChar
+
 }
 
 console.log(maxOccurrences("Hello")); //"l"
@@ -140,17 +129,22 @@ starOut("")   	-> ""
 console.log('\n---------Task-4-------\n');
 
 const starOut = (str) => {
-    let result = '';
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === '*') {
-            continue;
+    let strAsArr = str.split('');
+
+    while(strAsArr.includes('*')){
+        const indexOfStar = strAsArr.indexOf('*');
+        const indexBeforeStar = indexOfStar - 1;
+        const indexAfterStar = indexOfStar + 1;
+
+        while(strAsArr[indexAfterStar] === '*'){
+            strAsArr.splice(indexAfterStar, 1);
         }
-        if (str[i - 1] === '*' || str[i + 1] === '*') {
-            continue;
-        }
-        result += str[i];
+
+        strAsArr.splice(indexBeforeStar, 3)
+
     }
-    return result;
+
+    return strAsArr.join('');
 }
 
 console.log(starOut("ab*cd")); //"ad"
@@ -186,26 +180,29 @@ romanToInt("MDCLXVI")  	​-> 1666
 
 console.log('\n---------Task-5-------\n');
 
-const romanToInt = (str) => {
-    const romanMap = {
+const romanToInt = (roman) => {
+    const values = {
         'I': 1,
         'V': 5,
         'X': 10,
         'L': 50,
         'C': 100,
         'D': 500,
-        'M': 1000
+        'M': 1000,
     }
-    let result = 0;
-    for (let i = 0; i < str.length; i++) {
-        if (romanMap[str[i]] < romanMap[str[i + 1]]) {
-            result += romanMap[str[i + 1]] - romanMap[str[i]];
-            i++;
-        } else {
-            result += romanMap[str[i]];
-        }
-    }
-    return result;
+
+    return roman.split('').reduce((result, numberal, i) => values[numberal] < values[roman[i+1]] ? result - values[numberal] : result + values[numberal],0)
+
+
+    // let result = 0;
+
+    // for(let i = 0; i < roman.length; i++){
+    //     if(values[roman[i]] < values[roman[i+1]]) result -= values[roman[i]]
+    //     else result += values[roman[i]]
+    // }
+
+    // return result
+
 }
 
 console.log(romanToInt("I")); //1
