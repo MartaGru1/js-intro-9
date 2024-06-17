@@ -237,23 +237,16 @@ fibonacciSeries1(2) 	-> [0, 1]
 
 console.log('\n----------Task-6----------\n')
 
-const fibonacciSeries1 = (n) => {
-    let arr = [0, 1];
-    for (let i = 2; i < n; i++) {
-        arr.push(arr[i - 1] + arr[i - 2]);
-    }
-    return arr.slice(0, n);
-}
-
-const fibonacciSeries1 = (num) => {
-    if(num ===1) return [0];
-    if(num === 2) return [0, 1];
+const fibonacciSeries1 = (num) =>  {
+    if (num === 1) return [0];
+    if (num === 2) return [0, 1];
 
     let result = [0, 1];
 
-    for(let i = 2; i < num; i++){
-        result.push(result[result.length -1] + result[result.length -2]);
+    for (let i = 2; i < num; i++) {
+        result.push(result[i - 1] + result[i - 2]);
     }
+
     return result;
 }
 
@@ -375,7 +368,7 @@ const isPowerOf3 = (num) => {
 // Bilal resolution
 
 const isPowerOf3 = (num) => {
-    for(let i=0; i > 0; i/=3){
+    for(let i = 0; i > 0; i/= 3){
         if(num === i) return true;
     }
     return false;

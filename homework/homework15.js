@@ -10,11 +10,12 @@ toCamelCase(“I Learn Java Script”)   	-> "iLearnJavaScript"
 toCamelCase(“helloWorld”)   ​	-> “helloWorld”
  */
 console.log('\n---------Task-1-------\n');
-
 const toCamelCase = (str) => {
-    if (!str.includes(' ')) return str
-    return str.trim().split(' ').map((x, i) => i == 0 ? x.toLowerCase() : x.charAt(0).toUpperCase() + x.slice(1).toLowerCase()).join('')
-}
+    if(!str.includes(' ')) return str
+    return str.trim().toLowerCase().split(' ').filter(word => word !== '').map((word, index)=>{
+        return index===0 ? word : word[0].toUpperCase() + word.slice(1)
+    }).join('')
+  }
 
 console.log(toCamelCase("first name")); //firstName
 console.log(toCamelCase("last     name")); //lastName
@@ -38,10 +39,7 @@ toSnakeCase("hello")   		​-> "hello"
 */
 console.log('\n---------Task-2-------\n');
 
-const toSnakeCase = (str) => {
-    if (!str.includes(' ')) return str.toLowerCase();
-    return str.trim().split(' ').map(x => x.toLowerCase()).join('_')
-}
+const toSnakeCase = (str) => str.trim().toLowerCase().split(' ').filter(word => word !== '').join('_');
 
 console.log(toSnakeCase("first name")); //first_name
 console.log(toSnakeCase("last     name")); //last_name
@@ -67,8 +65,16 @@ alternatingCases("123!@#aB") 	-> "123!@#Ab"
 console.log('\n---------Task-3-------\n');
 
 const alternatingCases = (str) => {
-    return str.split('').map((x, i) => i % 2 == 0 ? x.toUpperCase() : x.toLowerCase()).join('')
-}
+    let indexShifter = 0
+    return str.split('').map((char, index)=>{
+        if(char.toLowerCase() >= 'a' && char.toLowerCase() <= 'z'){
+            if((index + indexShifter) % 2 === 0) return char.toUpperCase();
+            else return char.toLowerCase()
+        }
+        indexShifter++;
+        return char 
+    }).join('')
+  }
 
 console.log(alternatingCases("Hello")); //HeLlO
 console.log(alternatingCases("basketball")); //BaSkEtBaLl
@@ -96,8 +102,14 @@ isNeutral("+++", "+++")          	 ->  "+++"
 console.log('\n---------Task-4-------\n');
 
 const isNeutral = (str1, str2) => {
-    return str1.split('').map((x, i) => x == str2[i] ? x : '0').join('')
-}
+    let result = ''
+    for(let i = 0; i < str1.length; i++){
+        if(str1[i] === '+' && str2[i] === '+') result += '+'
+        else if (str1[i] === '-' && str2[i] === '-') result += '-'
+        else result += '0'
+    }
+    return result
+  }
 
 console.log(isNeutral("-", "+")); //0
 console.log(isNeutral("-+", "-+")); //-+
@@ -122,19 +134,18 @@ isTrueOrFalse("Got stuck in the Traffic") 		-> false
 console.log('\n---------Task-5-------\n');
 
 const isTrueOrFalse = (str) => {
-    let alphabet = 'abcdefghijklm'
-    let positive = 0;
-    let negative = 0;
-
-    str.split(' ').forEach(e => {
-        let firstChar = e[0].toLowerCase();
-        if ( firstChar >= 'a' && firstChar <= 'z') {
-            alphabet.includes(firstChar) ? positive++ : negative++
-        }
-    })
-
-    return positive >= negative
-}
+    str = str.toLowerCase()
+    let countNeg = 0;
+    let countPos = 0;
+  
+    for(word of str.split(' ')){
+        if('abcdefghijklm'.includes(word[0])) countPos++;
+        else if('nopqrstuvwxyz'.includes(word[0])) countNeg++;
+    }
+  
+    return countPos >= countNeg;
+  
+  }
 
 console.log(isTrueOrFalse("A big brown fox caught a bad rabbit")); //true
 console.log(isTrueOrFalse("Xylophones can obtain Xenon.")); //false

@@ -325,9 +325,7 @@ const swapFirstLastWord = (str) => {
 
         return lastWord + middle + firstWord
     }
-
     return "";
-
 }
 
 console.log(swapFirstLastWord("Hello World"));
