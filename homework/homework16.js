@@ -12,11 +12,7 @@ toInitials( "Ja Le") 	-> "J. L."
  */
 console.log('\n---------Task-1-------\n');
 
-const toInitials = (str) => {
-    return str.split(' ').map((word, index)=>{
-        return index===0 ? word[0].toUpperCase() + '.' : word[0].toUpperCase() + '.'
-    }).join(' ')
-}
+const toInitials = str => str.split(' ').map(name => name[0].toUpperCase() + '.').join(' ')
 
 console.log(toInitials("Joe Doe")); //J. D.
 console.log(toInitials("Alex Reyes")); //A. R.
@@ -40,12 +36,7 @@ hasNumbers("!@#$%^&*()_+") 	-> false
  */
 console.log('\n---------Task-2-------\n');
 
-const hasNumbers = (str) => {
-for(let i=0; i<str.length; i++){
-    if(str[i] >= '0' && str[i] <= '9') return true
-}
-return false
-}
+const hasNumbers = str => str.split('').filter(x => x >= '0' && x <= '9').length > 0
 
 console.log(hasNumbers("")); //false
 console.log(hasNumbers("John is 34 years old")); //true
@@ -69,11 +60,7 @@ elementLength( [ "Trampoline", "", "Tennis", "Basketball" ] ) 	-> [ 10, 0, 6, 10
 */
 console.log('\n---------Task-3-------\n');
 
-const elementLength = (arr) => {
-    return arr.map((element)=>{
-        return element.length
-    })
-}
+const elementLength = arr => arr.map(str => str.length)
 
 console.log(elementLength(["Hello", "World"])); //[ 5, 5 ]
 console.log(elementLength(["Apple", "Banana", "Orange", "Pear"])); //[ 5, 6, 6, 4 ]
@@ -96,12 +83,7 @@ isArraySumEvenOrOdd( [ 1,1,1,1,1 ] )   ->  "odd”
 */
 console.log('\n---------Task-4-------\n');
 
-const isArraySumEvenOrOdd = (arr) => {
-    let sum = arr.reduce((acc, curr)=>{
-        return acc + curr
-    }, 0)
-    return sum % 2 === 0 ? 'even' : 'odd'
-}
+const isArraySumEvenOrOdd = arr => arr.reduce((sum, num)=> sum + num,0) % 2 === 0? 'even':'odd'
 
 console.log(isArraySumEvenOrOdd([])); //even
 console.log(isArraySumEvenOrOdd([0,-1,-5])); //even
@@ -123,9 +105,16 @@ reverse("Apples 456") 		-> "654 selppA"
 */
 console.log('\n---------Task-5-------\n');
 
-const reverse = (str) => {
-    return str.split('').reverse().join('')
-}
+const reverse = str => str.split('').reverse().join('')
+// const reverse = str => {
+//   let reversedStr = ''
+
+//   for(let i = str.length - 1; i >= 0; i--){
+//     reversedStr += str[i]
+//   }
+
+//   return reversedStr;
+// }
 
 console.log(reverse("Hello World")); //dlroW olleH
 console.log(reverse("TechGlobal")); //labolGhceT
@@ -147,11 +136,7 @@ reverseWords("Apples 456") 	-> "selppA 654"
  */
 console.log('\n---------Task-6-------\n');
 
-const reverseWords = (str) => {
-    return str.split(' ').map((word)=>{
-        return word.split('').reverse().join('')
-    }).join(' ')
-}
+const reverseWords = str => str.split(' ').map(x => x.split('').reverse().join('')).join(' ')
 
 console.log(reverseWords("Hello World")); //olleH dlroW
 console.log(reverseWords("TechGlobal")); //labolGhceT
